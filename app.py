@@ -25,17 +25,17 @@ animes = [{
     
     ]  # Almacenar los datos de los animes en una lista.
 
-# Ruta para obtener la lista de todos los animes (GET)
-
+# Ruta de la pagina principal
 @app.route('/')
 def index():
     return '¡Hola, mundo! Esta es mi primera API con Flask.'
 
-
+# Ruta para obtener la lista de todos los animes (GET)
 @app.route('/anime', methods=['GET'])
 def animes_mostrar():
     return animes
 
+# Ruta para crear un anime (POST)
 @app.route('/anime', methods=['POST'])
 def crear_anime():
     anime = {
@@ -68,8 +68,6 @@ def eliminar_anime(id):
             return jsonify("Anime eliminado exitosamente")
     return jsonify("Anime no encontrado")
 
-
-
 # Ruta para actualizar un anime por su ID (PUT)
 @app.route('/anime/<int:id>', methods=['PUT'])
 def actualizar_anime(id):
@@ -85,6 +83,8 @@ def actualizar_anime(id):
             return jsonify("Actualizado correctamente")
     return jsonify("Anime no encontrado")
 
+
+# Ruta para actualizar parcialmente por su ID (PATCH)
 @app.route("/anime/<int:id>", methods=["PATCH"])
 def actualizar_parcialmente(id):
     for anime in animes:
